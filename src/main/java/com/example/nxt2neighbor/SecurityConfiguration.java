@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/listings",true) // user's home page, it can be any URL
+                .defaultSuccessUrl("/home",true) // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -49,38 +49,13 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/sign-up","/listings","/js/**","/css/**","/img/**", "/forms", "/about", "/contact") // anyone can see the home and the ads pages
+                .requestMatchers("/","/home","/js/**","/css/**","/img/**", "/forms", "/about", "/contact") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/forms/createListing",
-                        "createListing",
-                        "listing",
-                        "/forms/neighborForm",
-                        "neighborForm",
-                        "/forms/updateListing",
-                        "/updateListing",
-                        "/home/about",
-                        "/home/contact",
-                        "/home/home",
-                        "/home/login",
-                        "/home/signUp",
-                        "home",
-                        "about",
-                        "contact",
-                        "login",
-                        "signUp",
-                        "/listings/viewListings",
-                        "viewListings",
-                        "/profiles/buyer",
-                        "/profiles/seller",
-                        "/profiles/neighbor",
-                        "buyer",
-                        "seller",
-                        "neighbor",
-                        "logout"
+                        "/home"
                 )
                 .authenticated();
 

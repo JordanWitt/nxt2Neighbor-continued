@@ -21,21 +21,6 @@ public class SignUpController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/join")
-    public String signUp(){
-        return "home/signUp";
-    }
-    @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-    public String handle(@ModelAttribute Users user, BindingResult result, RedirectAttributes redirectAttrs, @ModelAttribute Roles roles) {
-        if (result.hasErrors()) {
-            return "home/signUp";
-        }
-        redirectAttrs.addAttribute("id", user.getId()).addFlashAttribute("message", "Account created!");
-        String hash = passwordEncoder.encode(user.getPassword());
-        roles.setUser_role("buyer");
-        user.setPassword(hash);
-        userDao.save(user);
 
-        return "redirect:/home";
-    }
+
 }
