@@ -6,6 +6,70 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+    <div class="form-group">
+        <form th:action="@{/sign-up}" th:object="${user}" method="post">
+            <div class="form-group1">
+                <label for="username">Username:</label>
+                <input placeholder="username" type="text" class="form-control" id="username" name="username"
+                       th:field="*{username}"/>
+            </div>
+            <div class="form-group2">
+                <label for="username">email:</label>
+                <input placeholder="email" type="text" class="form-control" id="email" name="username"
+                       th:field="*{email}"/>
+            </div>
+            <div class="form-group3">
+                <label>10 or more characters</label><br>
+                <label for="password">Password</label>
+                <input placeholder="password" id="password" name="password" class="form-control" type="password"
+                       required pattern=".{1,}"
+                       title="10 or more characters" onkeyup='passConfirm();' th:field="*{password}">
+            </div>
+            <span id="Message"></span>
+            <div class="form-group4">
+                <label for="confirm_password">Confirm Password</label>
+                <input placeholder="confirm" id="confirm_password" name="confirm_password" class="form-control"
+                       type="password"
+                       onkeyup='passConfirm();'>
+            </div>
+            <div class="hstack"></div>
+            <!--	SECOND FORM-->
+            <div class="form-group5">
+                <label>choose role</label>
+                <div class="radio1">
+                    <input class="radio1" type="radio" id="seller" name="role" value="1" checked th:field="*{role}">
+                    <label for="seller">seller</label>
+                </div>
+                <div class="radio1">
+                    <input class="radio1" type="radio" id="buyer" name="role" value="2" th:field="*{role}">
+                    <label for="buyer">buyer</label>
+                </div>
+                <div class="radio1">
+                    <input class="radio1" type="radio" id="neighbor" name="role" value="3" th:field="*{role}">
+                    <label for="neighbor">neighbor</label>
+                </div>
 
+            </div>
+            <div class="radio1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    let passConfirm = function () {
+        if (document.getElementById("password").value ===
+            document.getElementById("confirm_password").value) {
+            document.getElementById("Message").style.color = "Green";
+            document.getElementById("Message").style.fontSize = "2vh";
+            document.getElementById("Message").innerHTML = "Passwords match!"
+        } else {
+            document.getElementById("Message").style.color = "Red";
+            document.getElementById("Message").style.fontSize = "2vh";
+            document.getElementById("Message").innerHTML = "Passwords do NOT match!"
+        }
+    }
+</script>
 </body>
 </html>
